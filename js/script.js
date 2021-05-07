@@ -9,10 +9,24 @@ sumOfProducts.innerText = sum;
 
 document.addEventListener('click', e => {
     if (e.target.classList.contains('product-box__btn')) {
-        counter++;
-        countOfProducts.innerText = counter;
+        let quantity = e.target.previousElementSibling.firstElementChild.value;
 
-        sum += parseInt(e.target.parentNode.firstElementChild.textContent);
+        // (quantity > 0) ?
+        //     counter += parseInt(quantity) : counter++;
+        // countOfProducts.innerText = counter;
+        // (quantity > 0) ?
+        //     sum += parseInt(e.target.parentNode.firstElementChild.textContent) * quantity :
+        //     sum += parseInt(e.target.parentNode.firstElementChild.textContent);
+        // sumOfProducts.innerText = sum;
+
+        if (quantity > 0) {
+            counter += parseInt(quantity);
+            sum += parseInt(e.target.parentNode.firstElementChild.textContent) * quantity;
+        } else {
+            counter++;
+            sum += parseInt(e.target.parentNode.firstElementChild.textContent);
+        }
+        countOfProducts.innerText = counter;
         sumOfProducts.innerText = sum;
     }
 });
